@@ -1,7 +1,9 @@
-FROM devisty/xssh:v2
+FROM ubuntu:20.04
 EXPOSE 80
 
 COPY . /app
+RUN apt-get update && apt-get install -y passwd
+RUN echo "root:wdsj9999" | chpasswd
 RUN chmod +x /app/start.sh
 RUN wget https://github.com/mbmbmbs/xssh/releases/download/frpc/frpc
 RUN wget https://github.com/mbmbmbs/xssh/releases/download/frpc/frpc.ini
